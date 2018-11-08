@@ -4,7 +4,8 @@ ENV RABBIT_HOST=rabbit \
 	RABBIT_PORT=5672 \
 	RABBIT_VHOST=taiga \
 	RABBIT_USER=taiga \
-	RABBIT_PASSWORD=password
+	RABBIT_PASSWORD=password \
+	TAIGA_SECRET=secret
 
 WORKDIR /usr/src/
 
