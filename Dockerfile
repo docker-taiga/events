@@ -9,17 +9,16 @@ ENV RABBIT_HOST=rabbit \
 
 WORKDIR /usr/src/
 
-RUN apk add --no-cache --virtual .build-dependencies git perl \
-	&& git clone https://github.com/taigaio/taiga-events.git taiga-events && cd taiga-events \
-	&& perl -0777 -pe 's/"devDependencies": \{.*?\},//s' -i package.json \
+RUN apk add --no-cache --virtual .build-dependencies git \
+	&& git clone https://github.com/Alivekeep/taiga-events taiga-events && cd taiga-events \
 	&& apk del .build-dependencies \
-	&& yarn --production && yarn global add coffeescript
+	&& yarn --production
 
 WORKDIR /usr/src/taiga-events
 
 EXPOSE 8888
 
-COPY config.json ./
+COPY .env.example ./.env
 COPY start.sh /
 
 CMD ["/start.sh"]
