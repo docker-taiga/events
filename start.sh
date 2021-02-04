@@ -9,9 +9,9 @@ sed -e 's/$RABBIT_USER/'$RABBIT_USER'/' \
 	-e 's/$RABBIT_PORT/'$RABBIT_PORT'/' \
 	-e 's/$RABBIT_VHOST/'$RABBIT_VHOST'/' \
 	-e 's/$TAIGA_SECRET/'$TAIGA_SECRET_ESCAPED'/' \
-	-i config.json
+	-i .env
 
-exec coffee index.coffee > /dev/stdout 2> /dev/stderr &
+exec yarn run start:production > /dev/stdout 2> /dev/stderr &
 NODE_PID=$!
 
 trap 'kill -TERM $NODE_PID' SIGTERM
